@@ -15,12 +15,12 @@ PHP资产管理引擎, 支持composer、HTTP调用。
 1. clone下载本项目， 并使用composer安装依赖
 
 ```
-git clone xxxxx
+git clone https://github.com/MonGDCH/assets.git
 
 composer install
 ```
 
-2. 编辑配置config目录下的config.php文件。【配置说明请查看wiki】
+2. 编辑配置config目录下的config.php文件。
 
 3. 执行应用目录下的init, 创建数据库
 
@@ -39,10 +39,10 @@ php -S 0.0.0.0:8888 web.php
 1. composer安装本项目
 
 ```
-composer require xxxx
+composer require mongdch/assets
 ```
 
-2. 编辑配置config目录下的config.php文件。【配置说明请查看wiki】
+2. 编辑配置config目录下的config.php文件。
 
 3. 执行应用目录下的init, 创建数据库
 
@@ -52,4 +52,4 @@ php init
 
 #### API文档
 
-* 请查看wiki
+[请查看Wiki](https://github.com/MonGDCH/assets/wiki) 
