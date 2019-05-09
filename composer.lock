@@ -1,0 +1,214 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "750f3e56e0077353d2dbf9554b7e655a",
+    "packages": [
+        {
+            "name": "mongdch/mon-env",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MonGDCH/mon-env.git",
+                "reference": "f0fba906a24c0bdbe26a1d923054f82c3b9256b7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MonGDCH/mon-env/zipball/f0fba906a24c0bdbe26a1d923054f82c3b9256b7",
+                "reference": "f0fba906a24c0bdbe26a1d923054f82c3b9256b7",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "mon\\env\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MonGDCH",
+                    "email": "985558837@qq.com"
+                }
+            ],
+            "description": "the php env config utils.",
+            "keywords": [
+                "config",
+                "env",
+                "php"
+            ],
+            "time": "2019-04-23T05:48:59+00:00"
+        },
+        {
+            "name": "mongdch/mon-orm",
+            "version": "v2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MonGDCH/mon-orm.git",
+                "reference": "80fc53eb7efc32a449267c521c8a0137f5b1ee40"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MonGDCH/mon-orm/zipball/80fc53eb7efc32a449267c521c8a0137f5b1ee40",
+                "reference": "80fc53eb7efc32a449267c521c8a0137f5b1ee40",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "mon\\orm\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "MonGDCH",
+                    "email": "985558837@qq.com"
+                }
+            ],
+            "description": "the php mysql orm",
+            "homepage": "http://blog.gdmonlam.com/",
+            "keywords": [
+                "mon",
+                "mysql",
+                "orm"
+            ],
+            "time": "2019-03-26T06:01:39+00:00"
+        },
+        {
+            "name": "mongdch/mon-store",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MonGDCH/mon-store.git",
+                "reference": "dfee8bbcffa99f576b73e0d481cc710ccdc8a8b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MonGDCH/mon-store/zipball/dfee8bbcffa99f576b73e0d481cc710ccdc8a8b4",
+                "reference": "dfee8bbcffa99f576b73e0d481cc710ccdc8a8b4",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "mon\\store\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "MonGDCH",
+                    "email": "985558837@qq.com"
+                }
+            ],
+            "description": "The PHP store util",
+            "keywords": [
+                "cache",
+                "cookie",
+                "file",
+                "redis",
+                "session",
+                "store"
+            ],
+            "time": "2019-04-11T10:12:57+00:00"
+        },
+        {
+            "name": "mongdch/mon-util",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MonGDCH/mon-util.git",
+                "reference": "99431d93f410e9960c421aec225bd876d4b2c196"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MonGDCH/mon-util/zipball/99431d93f410e9960c421aec225bd876d4b2c196",
+                "reference": "99431d93f410e9960c421aec225bd876d4b2c196",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "mon\\util\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "MonGDCH",
+                    "email": "985558837@qq.com"
+                }
+            ],
+            "description": "The php common utils.",
+            "keywords": [
+                "php",
+                "utils"
+            ],
+            "time": "2019-04-18T10:19:55+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "mongdch/mon-store": 20,
+        "mongdch/mon-util": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=7.0.0"
+    },
+    "platform-dev": []
+}

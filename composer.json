@@ -1,0 +1,29 @@
+{
+    "name": "mongdch/assets",
+    "description": "The PHP user asset management engine.",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/MonGDCH/assets",
+    "keywords": [
+        "PHP",
+        "assets"
+    ],
+    "authors": [
+        {
+            "name": "MonGDCH",
+            "email": "985558837@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "mongdch/mon-orm": "^2.1",
+        "mongdch/mon-env": "^1.0",
+        "mongdch/mon-store": "dev-master",
+        "mongdch/mon-util": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "mon\\assets\\": "src"
+        }
+    }
+}
