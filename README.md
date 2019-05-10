@@ -59,4 +59,4 @@ php init
 ##### 1.0.1
 
 * 优化代码结构
-* 接入LAF框架Command指令
+* 接入mon-console命令行Command指令
