@@ -15,7 +15,7 @@ PHP资产管理引擎, 支持composer、HTTP调用。
 1. clone下载本项目， 并使用composer安装依赖
 
 ```
-git clone https://github.com/MonGDCH/assets.git
+git clone https://github.com/MonGDCH/mon-assets.git
 
 composer install
 ```
@@ -39,7 +39,7 @@ php -S 0.0.0.0:8888 web.php
 1. composer安装本项目
 
 ```
-composer require mongdch/assets
+composer require mongdch/mon-assets
 ```
 
 2. 编辑配置config目录下的config.php文件。
@@ -52,4 +52,11 @@ php init
 
 #### API文档
 
-[请查看Wiki](https://github.com/MonGDCH/assets/wiki) 
+[请查看Wiki](https://github.com/MonGDCH/mon-assets/wiki) 
+
+#### 版本
+
+##### 1.0.1
+
+* 优化代码结构
+* 接入LAF框架Command指令
