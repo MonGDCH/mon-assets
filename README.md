@@ -60,3 +60,7 @@ php init
 
 * 优化代码结构
 * 接入mon-console命令行Command指令
+
+##### 1.0.2
+
+* 更新依赖为发布包

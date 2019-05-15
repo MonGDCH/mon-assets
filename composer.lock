@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "38172a2b01920b52d533f6300c6a0cef",
+    "content-hash": "83d716d42e3b32413ba53db0cb3b0ba3",
     "packages": [
         {
             "name": "mongdch/mon-env",
@@ -18,13 +18,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/MonGDCH/mon-env/zipball/f0fba906a24c0bdbe26a1d923054f82c3b9256b7",
                 "reference": "f0fba906a24c0bdbe26a1d923054f82c3b9256b7",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "shasum": ""
             },
             "require": {
                 "php": ">=7.0.0"
@@ -65,13 +59,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/MonGDCH/mon-orm/zipball/80fc53eb7efc32a449267c521c8a0137f5b1ee40",
                 "reference": "80fc53eb7efc32a449267c521c8a0137f5b1ee40",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.6.0"
@@ -103,7 +91,7 @@
         },
         {
             "name": "mongdch/mon-store",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MonGDCH/mon-store.git",
@@ -113,13 +101,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/MonGDCH/mon-store/zipball/dfee8bbcffa99f576b73e0d481cc710ccdc8a8b4",
                 "reference": "dfee8bbcffa99f576b73e0d481cc710ccdc8a8b4",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "shasum": ""
             },
             "require": {
                 "php": ">=7.0.0"
@@ -153,7 +135,7 @@
         },
         {
             "name": "mongdch/mon-util",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MonGDCH/mon-util.git",
@@ -163,13 +145,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/MonGDCH/mon-util/zipball/99431d93f410e9960c421aec225bd876d4b2c196",
                 "reference": "99431d93f410e9960c421aec225bd876d4b2c196",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.6.0"
@@ -201,10 +177,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "mongdch/mon-store": 20,
-        "mongdch/mon-util": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
