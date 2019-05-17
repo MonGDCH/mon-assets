@@ -151,7 +151,7 @@ class Log extends Comm
     protected function scopeList($query, array $args)
     {
         $uid = $args['uid'];
-        $cond = $query->table($this->getTableName($uid))->where('uid', $uid);
+        $cond = $query->table($this->getTableName($uid))->where('uid', $uid)->order('id', 'DESC');
         if(isset($args['name']) && !empty($args['name']) && is_string($args['name'])){
             $cond->where('name', $args['name']);
         }

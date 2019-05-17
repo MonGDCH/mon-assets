@@ -30,7 +30,7 @@ class Comm extends Model
      * @param  int    $uid 用户ID
      * @return [type]      [description]
      */
-    protected function getTableName(int $uid)
+    public function getTableName(int $uid)
     {
         if($this->tableCount <= 1){
             return $this->table;
