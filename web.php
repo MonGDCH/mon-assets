@@ -11,11 +11,12 @@ require __DIR__ . '/vendor/autoload.php';
 $option = $_POST;
 // var_dump($option);exit();
 // 验证参数
-if( !isset($option['method']) || !isset($option['params']) || !isset($option['id']) 
+if (
+    !isset($option['method']) || !isset($option['params']) || !isset($option['id'])
     || !is_string($option['method']) || empty($option['method'])
     || !is_array($option['params']) || empty($option['params'])
     || !is_numeric($option['id']) || !is_int($option['id'] + 0)
-){
+) {
     header("HTTP/1.1 400 Bad Request");
     exit();
 }

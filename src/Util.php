@@ -2,8 +2,6 @@
 namespace mon\assets;
 
 use mon\orm\Db;
-use mon\env\Config;
-use mon\orm\exception\MondbException;
 
 /**
  * 工具类
@@ -28,11 +26,11 @@ class Util
      */
     public static function ossLog($file, $line, $log, $type = 'INFO')
     {
-        if(is_null(self::$log_drive)){
+        if (is_null(self::$log_drive)) {
             return true;
         }
 
-        $message = "[{$file} => {$line}] ".$log;
+        $message = "[{$file} => {$line}] " . $log;
         return self::$log_drive->record($message, $type);
     }
 
@@ -46,20 +44,18 @@ class Util
     public static function installAsstes($tabname, $tabtotal, $echo = true)
     {
         $total = 0;
-        if($tabtotal > 1){
-            for($i = 0; $i < $tabtotal; $i++)
-            {
+        if ($tabtotal > 1) {
+            for ($i = 0; $i < $tabtotal; $i++) {
                 $name = $tabname . '_' . $i;
-                if($echo){
-                    echo 'create table: '.$name.PHP_EOL;
+                if ($echo) {
+                    echo 'create table: ' . $name . PHP_EOL;
                 }
                 self::createAsstesTable($name);
                 $total++;
             }
-        }
-        else{
-            if($echo){
-                echo 'create table: '.$tabname.PHP_EOL;
+        } else {
+            if ($echo) {
+                echo 'create table: ' . $tabname . PHP_EOL;
             }
             self::createAsstesTable($tabname);
             $total++;
@@ -79,20 +75,18 @@ class Util
     public static function installLog($tabname, $tabtotal, $echo = true)
     {
         $total = 0;
-        if($tabtotal > 1){
-            for($i = 0; $i < $tabtotal; $i++)
-            {
+        if ($tabtotal > 1) {
+            for ($i = 0; $i < $tabtotal; $i++) {
                 $name = $tabname . '_' . $i;
-                if($echo){
-                    echo 'create table: '.$name.PHP_EOL;
+                if ($echo) {
+                    echo 'create table: ' . $name . PHP_EOL;
                 }
                 self::createLogTable($name);
                 $total++;
             }
-        }
-        else{
-            if($echo){
-                echo 'create table: '.$tabname.PHP_EOL;
+        } else {
+            if ($echo) {
+                echo 'create table: ' . $tabname . PHP_EOL;
             }
             self::createLogTable($tabname);
             $total++;
@@ -137,7 +131,7 @@ SQL;
      */
     public static function createLogTable($name = 'asset_balance_log')
     {
-    $log_sql = <<<SQL
+        $log_sql = <<<SQL
 CREATE TABLE `%s`  (
     `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
     `uid` int(10) UNSIGNED NOT NULL COMMENT '用户ID',

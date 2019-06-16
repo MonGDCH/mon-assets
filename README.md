@@ -14,7 +14,7 @@ PHP资产管理引擎, 支持composer、HTTP调用。
 
 1. clone下载本项目， 并使用composer安装依赖
 
-```
+```bash
 git clone https://github.com/MonGDCH/mon-assets.git
 
 composer install
@@ -24,13 +24,13 @@ composer install
 
 3. 执行应用目录下的init, 创建数据库
 
-```
+```bash
 php init
 ```
 
 4. 启动http服务器，入口执行web.php
 
-```
+```bash
 php -S 0.0.0.0:8888 web.php
 ```
 
@@ -38,7 +38,7 @@ php -S 0.0.0.0:8888 web.php
 
 1. composer安装本项目
 
-```
+```bash
 composer require mongdch/mon-assets
 ```
 
@@ -46,7 +46,7 @@ composer require mongdch/mon-assets
 
 3. 执行应用目录下的init, 创建数据库
 
-```
+```bash
 php init
 ```
 
@@ -56,11 +56,15 @@ php init
 
 #### 版本
 
-##### 1.0.1
+##### 1.0.3
 
-* 优化代码结构
-* 接入mon-console命令行Command指令
+* 优化代码，修复已知问题
 
 ##### 1.0.2
 
 * 更新依赖为发布包
+
+##### 1.0.1
+
+* 优化代码结构
+* 接入mon-console命令行Command指令

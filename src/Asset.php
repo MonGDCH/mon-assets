@@ -43,7 +43,7 @@ class Asset
      */
     public static function instance()
     {
-        if(is_null(self::$instance)){
+        if (is_null(self::$instance)) {
             self::$instance = new self;
         }
 
@@ -57,19 +57,18 @@ class Asset
      */
     public function init(array $config = [])
     {
-        if(empty($config)){
+        if (empty($config)) {
             $path = __DIR__ . '/../config/config.php';
             // 加载配置信息
             Config::instance()->load($path, 'mon_assets');
-        }
-        else{
+        } else {
             Config::instance()->set('mon_assets', $config);
         }
-        
+
         $config = Config::instance()->get('mon_assets');
-        if(!empty($config['system']['log_dirve'])){
+        if (!empty($config['system']['log_dirve'])) {
             $obj = new $config['system']['log_dirve']();
-            if(!$obj instanceof LogInterface){
+            if (!$obj instanceof LogInterface) {
                 throw new AssetException("log dirve not instanceof for LogInterface", -3);
             }
             // 设置日志驱动
@@ -90,24 +89,23 @@ class Asset
     public function run(string $class, string $method, array $params = [])
     {
         $this->http = true;
-        $log = "class => {$class}, method => {$method}, params => ".var_export($params, true);
+        $log = "class => {$class}, method => {$method}, params => " . var_export($params, true);
         Util::ossLog(__FILE__, __LINE__, $log);
-        try{
+        try {
             // 获取对应对象
             $class = '\\mon\\assets\\model\\' . ucfirst($class);
-            if(!class_exists($class)){
+            if (!class_exists($class)) {
                 return $this->res(-4, 'class not found');
             }
             $method = $method . 'Action';
             $object = new $class();
-            if(!method_exists($object, $method)){
+            if (!method_exists($object, $method)) {
                 return $this->res(-1, 'mothod not found');
             }
             // 执行类方法
             $data = call_user_func([$object, $method], $params);
             return $this->res(0, 'ok', $data);
-        }
-        catch(AssetException $e){
+        } catch (AssetException $e) {
             return $this->res($e->getCode(), $e->getMessage());
         }
     }
@@ -121,23 +119,22 @@ class Asset
      */
     public function excute(string $class, string $method, array $params = [])
     {
-        try{
+        try {
             // 获取对应对象
             $class = '\\mon\\assets\\model\\' . ucfirst($class);
-            if(!class_exists($class)){
+            if (!class_exists($class)) {
                 $this->error = 'class not found';
                 return false;
             }
             $object = new $class();
-            if(!method_exists($object, $method)){
+            if (!method_exists($object, $method)) {
                 $this->error = 'mothod not found';
                 return false;
             }
             // 执行类方法
             $data = call_user_func([$object, $method], $params);
             return $data;
-        }
-        catch(AssetException $e){
+        } catch (AssetException $e) {
             $this->error = $e->getMessage();
             return false;
         }

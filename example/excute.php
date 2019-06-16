@@ -124,11 +124,8 @@ $option = [
 
 
 $data = Asset::instance()->excute($option['class'], $option['method'], $option['params']);
-if(!$data){
+if (!$data) {
     var_dump(Asset::instance()->getError());
     exit();
 }
 var_dump($data);
-
-
-

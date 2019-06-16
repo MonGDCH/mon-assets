@@ -49,7 +49,7 @@ class Balance extends Comm
      */
     public static function instance()
     {
-        if(is_null(self::$instance)){
+        if (is_null(self::$instance)) {
             self::$instance = new self();
         }
 
@@ -82,40 +82,35 @@ class Balance extends Comm
         // 解析数据
         $names = $option['names'];
         $info = [];
-        if(!empty($names)){
-            foreach($data as $item)
-            {
+        if (!empty($names)) {
+            foreach ($data as $item) {
                 $info[$item['name']] = [
                     'available' => $item['available'],
                     'freeze'    => $item['freeze'],
                 ];
             }
-            foreach($names as $key)
-            {
-                if(!isset($info[$key])){
+            foreach ($names as $key) {
+                if (!isset($info[$key])) {
                     $info[$key] = [
                         'available' => 0,
                         'freeze'    => 0,
                     ];
                 }
             }
-        }
-        else{
+        } else {
             // 获取所有资产类型
             $types = Config::instance()->get('mon_assets.balance', []);
             $keys = array_keys($types);
-            foreach($data as $item)
-            {
-                if(in_array($item['name'], $keys)){
+            foreach ($data as $item) {
+                if (in_array($item['name'], $keys)) {
                     $info[$item['name']] = [
                         'available' => $item['available'],
                         'freeze'    => $item['freeze'],
                     ];
                 }
             }
-            foreach($keys as $key)
-            {
-                if(!isset($info[$key])){
+            foreach ($keys as $key) {
+                if (!isset($info[$key])) {
                     $info[$key] = [
                         'available' => 0,
                         'freeze'    => 0,
@@ -135,18 +130,17 @@ class Balance extends Comm
      */
     public function updateAction(array $option)
     {
-        if(!isset($option['type']) || !in_array($option['type'], [1, 2])){
+        if (!isset($option['type']) || !in_array($option['type'], [1, 2])) {
             throw new AssetException('请输入正确的充值扣减类型，1充值2扣减', 107);
         }
         $type = $option['type'];
 
         $this->startTrans();
-        try{
-            if($type == 1){
+        try {
+            if ($type == 1) {
                 // 充值
                 $data = $this->charge($option);
-            }
-            else{
+            } else {
                 // 扣减
                 $data = $this->deduction($option);
             }
@@ -177,15 +171,13 @@ class Balance extends Comm
                 'available' => $data['available_after'],
                 'freeze'    => $data['freeze_after']
             ];
-        }
-        catch(AssetException $e){
+        } catch (AssetException $e) {
             $this->rollback();
             throw new AssetException($e->getMessage(), $e->getCode());
-        }
-        catch(Exception $e){
+        } catch (Exception $e) {
             $this->rollback();
-            Util::ossLog(__FILE__, __LINE__, 'update user assets exception, type => '.$type.', file => '.$e->getFile() . 
-                                            ', line => '.$e->getLine() . ', Message => '.$e->getMessage(), 'Exception');
+            Util::ossLog(__FILE__, __LINE__, 'update user assets exception, type => ' . $type . ', file => ' . $e->getFile() .
+                ', line => ' . $e->getLine() . ', Message => ' . $e->getMessage(), 'Exception');
 
             throw new AssetException('更新用户资产异常', 106);
         }
@@ -200,7 +192,7 @@ class Balance extends Comm
     public function shiftAction(array $option)
     {
         $this->startTrans();
-        try{
+        try {
             $data = $this->shift($option);
 
             $usable = $option['usable'];
@@ -229,15 +221,13 @@ class Balance extends Comm
                 'available' => $data['available_after'],
                 'freeze'    => $data['freeze_after']
             ];
-        }
-        catch(AssetException $e){
+        } catch (AssetException $e) {
             $this->rollback();
             throw new AssetException($e->getMessage(), $e->getCode());
-        }
-        catch(Exception $e){
+        } catch (Exception $e) {
             $this->rollback();
-            Util::ossLog(__FILE__, __LINE__, 'shift user assets exception, type => '.$type.', file => '.$e->getFile() . 
-                                            ', line => '.$e->getLine() . ', Message => '.$e->getMessage(), 'Exception');
+            Util::ossLog(__FILE__, __LINE__, 'shift user assets exception, type => ' . $type . ', file => ' . $e->getFile() .
+                ', line => ' . $e->getLine() . ', Message => ' . $e->getMessage(), 'Exception');
 
             throw new AssetException('更新用户资产异常', 106);
         }
@@ -254,20 +244,19 @@ class Balance extends Comm
     public function info(array $option)
     {
         $check = $this->validate->data($option)->scope('queryBalance')->check();
-        if($check !== true){
+        if ($check !== true) {
             throw new AssetException($check, 101);
         }
         $uid = $option['uid'];
         $names = $option['names'];
         $query = $this->table($this->getTableName($uid))->where('uid', $uid)->field('name, available, freeze, status, create_time, update_time');
-        if(!empty($names)){
+        if (!empty($names)) {
             // in查询
             $data = $query->whereIn('name', $names)->select();
-        }
-        else{
+        } else {
             $data = $query->select();
         }
-        Util::ossLog(__FILE__, __LINE__, 'query user assets info => '.$this->getLastSql(), 'SQL');
+        Util::ossLog(__FILE__, __LINE__, 'query user assets info => ' . $this->getLastSql(), 'SQL');
         return $data;
     }
 
@@ -283,7 +272,7 @@ class Balance extends Comm
     public function charge(array $option)
     {
         $check = $this->validate->data($option)->scope('chargeBalance')->check();
-        if($check !== true){
+        if ($check !== true) {
             throw new AssetException($check, 101);
         }
         $uid = $option['uid'];
@@ -293,9 +282,9 @@ class Balance extends Comm
 
         // 获取判断用户是否已有指定资产类型
         $info = $this->table($this->getTableName($uid))->where('uid', $uid)->where('name', $name)->find();
-        Util::ossLog(__FILE__, __LINE__, 'query user assets info => '.$this->getLastSql(), 'SQL');
+        Util::ossLog(__FILE__, __LINE__, 'query user assets info => ' . $this->getLastSql(), 'SQL');
         // 存在资产，更新
-        if($info){
+        if ($info) {
             $field = $usable == 1 ? 'available' : 'freeze';
             $update = [];
             $update[$field] = $info[$field] + $amount;
@@ -305,8 +294,8 @@ class Balance extends Comm
             ];
             $where[$field] = $info[$field];
             $save = $this->table($this->getTableName($uid))->save($update, $where);
-            Util::ossLog(__FILE__, __LINE__, 'charge user assets => '.$this->getLastSql());
-            if(!$save){
+            Util::ossLog(__FILE__, __LINE__, 'charge user assets => ' . $this->getLastSql());
+            if (!$save) {
                 throw new AssetException('更新用户资产失败', 104);
             }
 
@@ -321,7 +310,7 @@ class Balance extends Comm
             ];
         }
         // 不存在，新增
-        else{
+        else {
             // 写入的数据
             $info = [
                 'uid'       => $uid,
@@ -330,8 +319,8 @@ class Balance extends Comm
                 'freeze'    => $usable == 0 ? $amount : 0,
             ];
             $save = $this->table($this->getTableName($uid))->save($info);
-            Util::ossLog(__FILE__, __LINE__, 'charge user assets => '.$this->getLastSql(), 'SQL');
-            if(!$save){
+            Util::ossLog(__FILE__, __LINE__, 'charge user assets => ' . $this->getLastSql(), 'SQL');
+            if (!$save) {
                 throw new AssetException('生成用户资产失败', 105);
             }
 
@@ -359,7 +348,7 @@ class Balance extends Comm
     public function deduction(array $option)
     {
         $check = $this->validate->data($option)->scope('deductionBalance')->check();
-        if($check !== true){
+        if ($check !== true) {
             throw new AssetException($check, 101);
         }
         $uid = $option['uid'];
@@ -369,14 +358,14 @@ class Balance extends Comm
 
         // 获取判断用户是否已有指定资产类型
         $info = $this->table($this->getTableName($uid))->where('uid', $uid)->where('name', $name)->find();
-        Util::ossLog(__FILE__, __LINE__, 'query user assets info => '.$this->getLastSql(), 'SQL');
+        Util::ossLog(__FILE__, __LINE__, 'query user assets info => ' . $this->getLastSql(), 'SQL');
         // 不存在资产，返回false
-        if(!$info){
+        if (!$info) {
             throw new AssetException('获取用户资产失败，或用户未有该资产', 102);
         }
         // 判断资产是否足够
         $field = $usable == 1 ? 'available' : 'freeze';
-        if($info[$field] < $amount){
+        if ($info[$field] < $amount) {
             throw new AssetException('用户资产不足', 103);
         }
 
@@ -390,8 +379,8 @@ class Balance extends Comm
         $where[$field] = $info[$field];
         // 更新资产
         $save = $this->table($this->getTableName($uid))->save($update, $where);
-        Util::ossLog(__FILE__, __LINE__, 'deduction user assets => '.$this->getLastSql());
-        if(!$save){
+        Util::ossLog(__FILE__, __LINE__, 'deduction user assets => ' . $this->getLastSql());
+        if (!$save) {
             throw new AssetException('更新用户资产失败', 104);
         }
 
@@ -418,7 +407,7 @@ class Balance extends Comm
     public function shift(array $option)
     {
         $check = $this->validate->data($option)->scope('shiftBalance')->check();
-        if($check !== true){
+        if ($check !== true) {
             throw new AssetException($check, 101);
         }
         $uid = $option['uid'];
@@ -428,16 +417,16 @@ class Balance extends Comm
 
         // 获取判断用户是否已有指定资产类型
         $info = $this->table($this->getTableName($uid))->where('uid', $uid)->where('name', $name)->find();
-        Util::ossLog(__FILE__, __LINE__, 'query user assets info => '.$this->getLastSql(), 'SQL');
+        Util::ossLog(__FILE__, __LINE__, 'query user assets info => ' . $this->getLastSql(), 'SQL');
         // 不存在资产，返回false
-        if(!$info){
+        if (!$info) {
             throw new AssetException('获取用户资产失败，或用户未有该资产', 102);
         }
         // 获取字段
         $charge_field = $usable == 1 ? 'available' : 'freeze';
         $deduction_field = $usable == 0 ? 'available' : 'freeze';
         // 判断资产是否足够
-        if($info[$deduction_field] < $amount){
+        if ($info[$deduction_field] < $amount) {
             throw new AssetException('用户资产不足', 103);
         }
 
@@ -453,8 +442,8 @@ class Balance extends Comm
         ];
         // 更新资产
         $save = $this->table($this->getTableName($uid))->save($update, $where);
-        Util::ossLog(__FILE__, __LINE__, 'shift user assets => '.$this->getLastSql());
-        if(!$save){
+        Util::ossLog(__FILE__, __LINE__, 'shift user assets => ' . $this->getLastSql());
+        if (!$save) {
             throw new AssetException('更新用户资产失败', 104);
         }
 

@@ -10,11 +10,11 @@ use mon\env\Config;
 use mon\assets\Util;
 use mon\orm\exception\MondbException;
 
-Config::instance()->load(__DIR__.'/config/config.php');
+Config::instance()->load(__DIR__ . '/config/config.php');
 $config = Config::instance()->get();
 
-try{
-    echo 'Setup is starting...'.PHP_EOL;
+try {
+    echo 'Setup is starting...' . PHP_EOL;
 
     Db::setConfig($config['database']);
     Db::startTrans();
@@ -22,32 +22,29 @@ try{
     $total = 0;
     // 安装资产表
     $tabname = $config['system']['assets']['name'];
-    $tabtotal= $config['system']['assets']['total'];
+    $tabtotal = $config['system']['assets']['total'];
     $total += Util::installAsstes($tabname, $tabtotal);
     // 安装日志表
     $tabname = $config['system']['log']['name'];
-    $tabtotal= $config['system']['log']['total'];
+    $tabtotal = $config['system']['log']['total'];
     $total += Util::installLog($tabname, $tabtotal);
 
     Db::commit();
-    echo 'Total number of tables created: '.$total.PHP_EOL;
-    echo 'installation complete, success!'.PHP_EOL;
+    echo 'Total number of tables created: ' . $total . PHP_EOL;
+    echo 'installation complete, success!' . PHP_EOL;
     exit();
-}
-catch(MondbException $e){
+} catch (MondbException $e) {
     Db::rollback();
-    echo 'MondbException: '.PHP_EOL;
-    echo 'File: '.$e->getFile().PHP_EOL;
-    echo 'Line: '.$e->getLine().PHP_EOL;
-    echo 'Message: '.$e->getMessage().PHP_EOL;
+    echo 'MondbException: ' . PHP_EOL;
+    echo 'File: ' . $e->getFile() . PHP_EOL;
+    echo 'Line: ' . $e->getLine() . PHP_EOL;
+    echo 'Message: ' . $e->getMessage() . PHP_EOL;
     exit();
-}
-catch(Exception $e){
+} catch (Exception $e) {
     Db::rollback();
-    echo 'Exception: '.PHP_EOL;
-    echo 'File: '.$e->getFile().PHP_EOL;
-    echo 'Line: '.$e->getLine().PHP_EOL;
-    echo 'Message: '.$e->getMessage().PHP_EOL;
+    echo 'Exception: ' . PHP_EOL;
+    echo 'File: ' . $e->getFile() . PHP_EOL;
+    echo 'Line: ' . $e->getLine() . PHP_EOL;
+    echo 'Message: ' . $e->getMessage() . PHP_EOL;
     exit();
 }
-

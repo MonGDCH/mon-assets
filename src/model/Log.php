@@ -57,7 +57,7 @@ class Log extends Comm
      */
     public static function instance()
     {
-        if(is_null(self::$instance)){
+        if (is_null(self::$instance)) {
             self::$instance = new self();
         }
 
@@ -85,22 +85,22 @@ class Log extends Comm
     {
         $types = Config::instance()->get('mon_assets.balance', []);
         $keys = array_keys($types);
-        if(isset($option['name']) && (empty($option['name']) || !is_string($option['name']) || !in_array($option['name'], $keys))){
+        if (isset($option['name']) && (empty($option['name']) || !is_string($option['name']) || !in_array($option['name'], $keys))) {
             throw new AssetException('资产名称为空或资产类型不存在', 202);
         }
-        if(isset($option['source']) && (empty($option['source']) || !is_string($option['source']))){
+        if (isset($option['source']) && (empty($option['source']) || !is_string($option['source']))) {
             throw new AssetException('来源不能为空', 203);
         }
-        if(isset($option['from']) && (!is_numeric($option['from']) || !is_int($option['from'] + 0))){
+        if (isset($option['from']) && (!is_numeric($option['from']) || !is_int($option['from'] + 0))) {
             throw new AssetException('来源人ID格式错误', 204);
         }
-        if(isset($option['type']) && (!is_numeric($option['type']) || !is_int($option['type'] + 0))){
+        if (isset($option['type']) && (!is_numeric($option['type']) || !is_int($option['type'] + 0))) {
             throw new AssetException('类型格式错误', 205);
         }
-        if(isset($option['start_time']) && (!is_numeric($option['start_time']) || !is_int($option['start_time'] + 0) || $option['start_time'] < 0)){
+        if (isset($option['start_time']) && (!is_numeric($option['start_time']) || !is_int($option['start_time'] + 0) || $option['start_time'] < 0)) {
             throw new AssetException('起始时间格式错误', 206);
         }
-        if(isset($option['end_time']) && (!is_numeric($option['end_time']) || !is_int($option['end_time'] + 0) || $option['end_time'] < 0)){
+        if (isset($option['end_time']) && (!is_numeric($option['end_time']) || !is_int($option['end_time'] + 0) || $option['end_time'] < 0)) {
             throw new AssetException('结束时间格式错误', 207);
         }
         return $this->history($option);
@@ -121,20 +121,20 @@ class Log extends Comm
     {
         // 验证获取参数
         $check = $this->validate->data($option)->scope('queryLog')->check();
-        if($check !== true){
+        if ($check !== true) {
             throw new AssetException($check, 201);
         }
         $offset = isset($option['offset']) ? intval($option['offset']) : 0;
         $limit = isset($option['limit']) ? intval($option['limit']) : 10;
 
         $data = $this->scope('list', $option)->limit($offset, $limit)->select();
-        Util::ossLog(__FILE__, __LINE__, 'query user assets log => '.$this->getLastSql(), 'SQL');
+        Util::ossLog(__FILE__, __LINE__, 'query user assets log => ' . $this->getLastSql(), 'SQL');
         $total = $this->scope('list', $option)->count('id');
-        Util::ossLog(__FILE__, __LINE__, 'query user assets log count => '.$this->getLastSql(), 'SQL');
+        Util::ossLog(__FILE__, __LINE__, 'query user assets log count => ' . $this->getLastSql(), 'SQL');
 
         return [
             'uid'   => $option['uid'],
-            'offset'=> $offset,
+            'offset' => $offset,
             'limit' => $limit,
             'data'  => $data,
             'total' => $total
@@ -152,22 +152,22 @@ class Log extends Comm
     {
         $uid = $args['uid'];
         $cond = $query->table($this->getTableName($uid))->where('uid', $uid)->order('id', 'DESC');
-        if(isset($args['name']) && !empty($args['name']) && is_string($args['name'])){
+        if (isset($args['name']) && !empty($args['name']) && is_string($args['name'])) {
             $cond->where('name', $args['name']);
         }
-        if(isset($args['source']) && !empty($args['source']) && is_string($args['source'])){
+        if (isset($args['source']) && !empty($args['source']) && is_string($args['source'])) {
             $cond->where('source', $args['source']);
         }
-        if(isset($args['from']) && is_numeric($args['from']) && is_int($args['from'] + 0)){
+        if (isset($args['from']) && is_numeric($args['from']) && is_int($args['from'] + 0)) {
             $cond->where('from', $args['from']);
         }
-        if(isset($args['type']) && is_numeric($args['type']) && is_int($args['type'] + 0)){
+        if (isset($args['type']) && is_numeric($args['type']) && is_int($args['type'] + 0)) {
             $cond->where('type', $args['type']);
         }
-        if(isset($args['start_time']) && is_numeric($args['start_time']) && is_int($args['start_time'] + 0) && $args['start_time'] > 0){
+        if (isset($args['start_time']) && is_numeric($args['start_time']) && is_int($args['start_time'] + 0) && $args['start_time'] > 0) {
             $cond->where('create_time', '>=', $args['start_time']);
         }
-        if(isset($args['end_time']) && is_numeric($args['end_time']) && is_int($args['end_time'] + 0) && $args['end_time'] > 0){
+        if (isset($args['end_time']) && is_numeric($args['end_time']) && is_int($args['end_time'] + 0) && $args['end_time'] > 0) {
             $cond->where('create_time', '<=', $args['end_time']);
         }
 
@@ -184,7 +184,7 @@ class Log extends Comm
     {
         // 验证获取参数
         $check = $this->validate->data($option)->scope('record_log')->check();
-        if($check !== true){
+        if ($check !== true) {
             throw new AssetException($check, 201);
         }
         $info = [
@@ -202,8 +202,8 @@ class Log extends Comm
         ];
 
         $record = $this->table($this->getTableName($option['uid']))->save($info);
-        Util::ossLog(__FILE__, __LINE__, 'record user assets log => '.$this->getLastSql(), 'SQL');
-        if(!$record){
+        Util::ossLog(__FILE__, __LINE__, 'record user assets log => ' . $this->getLastSql(), 'SQL');
+        if (!$record) {
             throw new AssetException('记录日志流水失败', 208);
         }
 

@@ -21,41 +21,39 @@ class Install extends Command
     public function execute(Input $in, Output $out)
     {
         $config = Config::instance()->get('mon_assets', []);
-        if(empty($config)){
+        if (empty($config)) {
             return $out->block('please configure the `mon_assets` for config.php', 'ERROR');
         }
         $out->write('install mon-assets setup is starting...');
 
-        try{
+        try {
             $total = 0;
             Db::setConfig($config['database']);
             Db::startTrans();
             // 安装资产表
             $tabname = $config['system']['assets']['name'];
-            $tabtotal= $config['system']['assets']['total'];
+            $tabtotal = $config['system']['assets']['total'];
             $total += Util::installAsstes($tabname, $tabtotal);
             // 安装日志表
             $tabname = $config['system']['log']['name'];
-            $tabtotal= $config['system']['log']['total'];
+            $tabtotal = $config['system']['log']['total'];
             $total += Util::installLog($tabname, $tabtotal);
 
             Db::commit();
-            $out->write('Total number of tables created:'.$total);
+            $out->write('Total number of tables created:' . $total);
             return $out->write('installation complete, success!');
-        }
-        catch(MondbException $e){
+        } catch (MondbException $e) {
             Db::rollback();
             $out->write('MondbException: ');
-            $out->write('File: '.$e->getFile());
-            $out->write('Line: '.$e->getLine());
-            return $out->write('Message: '.$e->getMessage());
-        }
-        catch(Exception $e){
+            $out->write('File: ' . $e->getFile());
+            $out->write('Line: ' . $e->getLine());
+            return $out->write('Message: ' . $e->getMessage());
+        } catch (Exception $e) {
             Db::rollback();
             $out->write('Exception: ');
-            $out->write('File: '.$e->getFile());
-            $out->write('Line: '.$e->getLine());
-            return $out->write('Message: '.$e->getMessage());
+            $out->write('File: ' . $e->getFile());
+            $out->write('Line: ' . $e->getLine());
+            return $out->write('Message: ' . $e->getMessage());
         }
     }
 }

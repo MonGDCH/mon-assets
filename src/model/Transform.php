@@ -2,7 +2,6 @@
 namespace mon\assets\model;
 
 use Exception;
-use mon\env\Config;
 use mon\assets\Util;
 use mon\assets\AssetException;
 use mon\assets\validate\Assets;
@@ -67,7 +66,7 @@ class Transform extends Comm
     public function conver(array $option)
     {
         $check = $this->validate->data($option)->scope('converBalance')->check();
-        if($check !== true){
+        if ($check !== true) {
             throw new AssetException($check, 301);
         }
         $uid = $option['uid'];
@@ -81,13 +80,13 @@ class Transform extends Comm
 
         // 兑换资产
         $this->startTrans();
-        try{
+        try {
             // 扣减来源资产
             $deduction = Balance::instance()->deduction([
                 'uid'   => $uid,
                 'name'  => $from_name,
-                'amount'=> $from_amount,
-                'usable'=> $from_usable,
+                'amount' => $from_amount,
+                'usable' => $from_usable,
             ]);
 
             // 记录扣减来源资产日志
@@ -109,8 +108,8 @@ class Transform extends Comm
             $charge = Balance::instance()->charge([
                 'uid'   => $uid,
                 'name'  => $to_name,
-                'amount'=> $to_amount,
-                'usable'=> $to_usable,
+                'amount' => $to_amount,
+                'usable' => $to_usable,
             ]);
 
             // 记录增加目标资产日志
@@ -139,15 +138,13 @@ class Transform extends Comm
                 'freeze'    => $charge['freeze_after'],
             ];
             return $info;
-        }
-        catch(AssetException $e){
+        } catch (AssetException $e) {
             $this->rollback();
             throw new AssetException($e->getMessage(), $e->getCode());
-        }
-        catch(Exception $e){
+        } catch (Exception $e) {
             $this->rollback();
-            Util::ossLog(__FILE__, __LINE__, 'conver user assets exception, file => '.$e->getFile() . 
-                                            ', line => '.$e->getLine() . ', Message => '.$e->getMessage(), 'Exception');
+            Util::ossLog(__FILE__, __LINE__, 'conver user assets exception, file => ' . $e->getFile() .
+                ', line => ' . $e->getLine() . ', Message => ' . $e->getMessage(), 'Exception');
 
             throw new AssetException('用户资产兑换异常', 303);
         }
@@ -169,7 +166,7 @@ class Transform extends Comm
     public function transfer(array $option)
     {
         $check = $this->validate->data($option)->scope('transferBalance')->check();
-        if($check !== true){
+        if ($check !== true) {
             throw new AssetException($check, 301);
         }
         $from_id = $option['from_id'];
@@ -184,13 +181,13 @@ class Transform extends Comm
 
         // 兑换资产
         $this->startTrans();
-        try{
+        try {
             // 扣减来源资产
             $deduction = Balance::instance()->deduction([
                 'uid'   => $from_id,
                 'name'  => $from_name,
-                'amount'=> $from_amount,
-                'usable'=> $from_usable,
+                'amount' => $from_amount,
+                'usable' => $from_usable,
             ]);
 
             // 记录扣减来源资产日志
@@ -212,8 +209,8 @@ class Transform extends Comm
             $charge = Balance::instance()->charge([
                 'uid'   => $to_id,
                 'name'  => $to_name,
-                'amount'=> $to_amount,
-                'usable'=> $to_usable,
+                'amount' => $to_amount,
+                'usable' => $to_usable,
             ]);
 
             // 记录增加目标资产日志
@@ -244,15 +241,13 @@ class Transform extends Comm
                 'freeze'    => $charge['freeze_after'],
             ];
             return $info;
-        }
-        catch(AssetException $e){
+        } catch (AssetException $e) {
             $this->rollback();
             throw new AssetException($e->getMessage(), $e->getCode());
-        }
-        catch(Exception $e){
+        } catch (Exception $e) {
             $this->rollback();
-            Util::ossLog(__FILE__, __LINE__, 'transfer user assets exception, file => '.$e->getFile() . 
-                                            ', line => '.$e->getLine() . ', Message => '.$e->getMessage(), 'Exception');
+            Util::ossLog(__FILE__, __LINE__, 'transfer user assets exception, file => ' . $e->getFile() .
+                ', line => ' . $e->getLine() . ', Message => ' . $e->getMessage(), 'Exception');
             throw new AssetException('用户资产转账异常', 302);
         }
     }

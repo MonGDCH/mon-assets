@@ -18,7 +18,7 @@ class Comm extends Model
      */
     public function __construct()
     {
-        if(!Asset::instance()->isInit()){
+        if (!Asset::instance()->isInit()) {
             throw new AssetException('system not init', -2);
         }
         $this->config = Config::instance()->get('mon_assets.database', []);
@@ -32,7 +32,7 @@ class Comm extends Model
      */
     public function getTableName(int $uid)
     {
-        if($this->tableCount <= 1){
+        if ($this->tableCount <= 1) {
             return $this->table;
         }
 

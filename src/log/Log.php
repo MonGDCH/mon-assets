@@ -30,11 +30,11 @@ class Log implements LogInterface
      */
     public function record(string $msg, string $type = 'INFO')
     {
-        if(!Asset::instance()->isHttp()){
+        if (!Asset::instance()->isHttp()) {
             return true;
         }
         $now = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
-        $log = "[{$now}] [{$type}] {$msg}".PHP_EOL;
+        $log = "[{$now}] [{$type}] {$msg}" . PHP_EOL;
         return $this->saveFile($log);
     }
 
@@ -46,7 +46,7 @@ class Log implements LogInterface
      */
     protected function saveFile($content)
     {
-        if(!$this->file){
+        if (!$this->file) {
             $this->file = new File;
         }
 
@@ -56,7 +56,7 @@ class Log implements LogInterface
         $path = $base_path . $dir . '/' . $file . '.log';
 
         $save = $this->file->createFile($content, $path);
-        if(!$save){
+        if (!$save) {
             throw new AssetException("save http log faild", -4);
         }
         return $save;

@@ -93,4 +93,3 @@ list($class, $method) = explode('.', $option['method']);
 $data = Asset::instance()->run($class, $method, $option['params']);
 
 var_dump($data);
-

@@ -98,8 +98,10 @@ class Assets extends Validate
         'shiftBalance'      => ['uid', 'name', 'amount', 'usable'],
         'converBalance'     => ['uid', 'from_usable', 'to_usable', 'from_name', 'to_name', 'from_amount', 'to_amount'],
         'transferBalance'   => ['from_id', 'to_id', 'from_usable', 'to_usable', 'from_name', 'to_name', 'from_amount', 'to_amount'],
-        'record_log'        => ['uid', 'type', 'from', 'name', 'available_before', 'available_num', 'available_after', 
-                                'freeze_before', 'freeze_num', 'freeze_after']
+        'record_log'        => [
+            'uid', 'type', 'from', 'name', 'available_before', 'available_num', 'available_after',
+            'freeze_before', 'freeze_num', 'freeze_after'
+        ]
     ];
 
     /**
@@ -124,9 +126,8 @@ class Assets extends Validate
      */
     public function isnames($value)
     {
-        foreach($value as $item)
-        {
-            if(!$this->isname($item)){
+        foreach ($value as $item) {
+            if (!$this->isname($item)) {
                 return false;
             }
         }
