@@ -1,4 +1,5 @@
 <?php
+
 namespace mon\assets\model;
 
 use mon\orm\Model;
@@ -25,12 +26,12 @@ class Comm extends Model
     }
 
     /**
-     * 获取表名称
+     * 获取分表表名称
      *
      * @param  int    $uid 用户ID
-     * @return [type]      [description]
+     * @return string 分表名称
      */
-    public function getTableName(int $uid)
+    public function getTableName($uid)
     {
         if ($this->tableCount <= 1) {
             return $this->table;

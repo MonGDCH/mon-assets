@@ -31,8 +31,6 @@ return [
         'password'        => 'root',
         // 端口
         'port'            => '3306',
-        // 数据库连接参数
-        'params'          => [],
         // 数据库编码默认采用utf8
         'charset'         => 'utf8',
         // 返回结果集类型

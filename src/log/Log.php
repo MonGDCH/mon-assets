@@ -17,7 +17,7 @@ class Log implements LogInterface
     /**
      * 文件驱动
      *
-     * @var [type]
+     * @var mixed
      */
     protected $file;
 
@@ -26,7 +26,7 @@ class Log implements LogInterface
      *
      * @param mixed  $msg       日志信息
      * @param string $type      日志级别
-     * @return $this
+     * @return Log
      */
     public function record(string $msg, string $type = 'INFO')
     {
@@ -41,8 +41,8 @@ class Log implements LogInterface
     /**
      * 保存文件日志
      *
-     * @param  [type] $content 内容
-     * @return [type]          [description]
+     * @param  string $content 内容
+     * @return mixed
      */
     protected function saveFile($content)
     {

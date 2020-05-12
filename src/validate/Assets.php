@@ -1,4 +1,5 @@
 <?php
+
 namespace mon\assets\validate;
 
 use mon\env\Config;
@@ -11,7 +12,8 @@ class Assets extends Validate
 {
     /**
      * 验证规则
-     * @var [type]
+     *
+     * @var array
      */
     public $rule = [
         'uid'           => 'required|int|min:1',
@@ -41,7 +43,8 @@ class Assets extends Validate
 
     /**
      * 错误提示信息
-     * @var [type]
+     *
+     * @var array
      */
     public $message = [
         'uid'           => '用户ID格式错误',
@@ -88,7 +91,8 @@ class Assets extends Validate
 
     /**
      * 验证场景
-     * @var [type]
+     *
+     * @var array
      */
     public $scope = [
         'queryLog'          => ['uid'],
@@ -107,8 +111,8 @@ class Assets extends Validate
     /**
      * 验证资产类型是否有效
      *
-     * @param  [type] $value [description]
-     * @return [type]        [description]
+     * @param  mixed $value 验证值
+     * @return boolean
      */
     public function isname($value)
     {
@@ -121,8 +125,8 @@ class Assets extends Validate
     /**
      * 验证资产类型列表是否合法
      *
-     * @param  [type] $value [description]
-     * @return [type]        [description]
+     * @param  mixed $value 验证值
+     * @return boolean
      */
     public function isnames($value)
     {

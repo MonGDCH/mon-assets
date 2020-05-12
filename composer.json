@@ -1,7 +1,7 @@
 {
     "name": "mongdch/mon-assets",
     "description": "The PHP user asset management engine.",
-    "version": "1.0.3",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/MonGDCH/assets",
     "keywords": [
@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "php": ">=7.0.0",
+        "php": ">=5.6.0",
         "mongdch/mon-orm": "^2.1",
         "mongdch/mon-env": "^1.0",
         "mongdch/mon-store": "^1.0",

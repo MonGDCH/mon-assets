@@ -1,4 +1,5 @@
 <?php
+
 namespace mon\assets\model;
 
 use mon\env\Config;
@@ -16,14 +17,14 @@ class Log extends Comm
     /**
      * 单例实现
      *
-     * @var [type]
+     * @var Log
      */
     protected static $instance;
 
     /**
      * type类型说明
      *
-     * @var [type]
+     * @var array
      */
     protected $typeInfo = [
         1 => '充值',
@@ -39,21 +40,21 @@ class Log extends Comm
     /**
      * 新增自动写入字段
      *
-     * @var [type]
+     * @var array
      */
     protected $insert = ['create_time'];
 
     /**
      * 验证器
      *
-     * @var [type]
+     * @var Assets
      */
     protected $validate;
 
     /**
      * 获取单例
      *
-     * @return [type] [description]
+     * @return Log
      */
     public static function instance()
     {
@@ -78,8 +79,8 @@ class Log extends Comm
     /**
      * 查询日志流水
      *
-     * @param  array  $option [description]
-     * @return [type]         [description]
+     * @param  array  $option 请求参数
+     * @return array  日志记录
      */
     public function historyAction(array $option)
     {
@@ -115,7 +116,7 @@ class Log extends Comm
      * @param  int    $end_time   结束时间
      * @param  int    $offset     偏移数
      * @param  int    $limit      查询记录数
-     * @return [type]             [description]
+     * @return array  日志记录
      */
     public function history(array $option)
     {
@@ -133,20 +134,20 @@ class Log extends Comm
         Util::ossLog(__FILE__, __LINE__, 'query user assets log count => ' . $this->getLastSql(), 'SQL');
 
         return [
-            'uid'   => $option['uid'],
-            'offset' => $offset,
-            'limit' => $limit,
-            'data'  => $data,
-            'total' => $total
+            'uid'       => $option['uid'],
+            'offset'    => $offset,
+            'limit'     => $limit,
+            'data'      => $data,
+            'total'     => $total
         ];
     }
 
     /**
      * 构建查询对象
      *
-     * @param  [type] $query [description]
-     * @param  array  $args  [description]
-     * @return [type]        [description]
+     * @param  Log    $query 本类实例
+     * @param  array  $args  查询参数
+     * @return Log
      */
     protected function scopeList($query, array $args)
     {
@@ -177,8 +178,8 @@ class Log extends Comm
     /**
      * 记录日志
      *
-     * @param  array  $option [description]
-     * @return [type]         [description]
+     * @param  array  $option 请求参数
+     * @return boolean
      */
     public function record(array $option)
     {

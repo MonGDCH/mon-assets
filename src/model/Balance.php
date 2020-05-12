@@ -1,4 +1,5 @@
 <?php
+
 namespace mon\assets\model;
 
 use Exception;
@@ -17,35 +18,35 @@ class Balance extends Comm
     /**
      * 单例实现
      *
-     * @var [type]
+     * @var Balance
      */
     protected static $instance;
 
     /**
      * 新增自动写入字段
      *
-     * @var [type]
+     * @var array
      */
     protected $insert = ['create_time', 'update_time'];
 
     /**
      * 更新自动写入字段
      *
-     * @var [type]
+     * @var array
      */
     protected $update = ['update_time'];
 
     /**
      * 验证器
      *
-     * @var [type]
+     * @var Assets
      */
     protected $validate;
 
     /**
      * 获取单例
      *
-     * @return [type] [description]
+     * @return Balance
      */
     public static function instance()
     {
@@ -72,7 +73,7 @@ class Balance extends Comm
      *
      * @param  int    $uid   用户ID
      * @param  array  $names 查询资产列表，空数组则查询全部
-     * @return [type]        [description]
+     * @return array 资产信息
      */
     public function infoAction(array $option)
     {
@@ -125,8 +126,8 @@ class Balance extends Comm
     /**
      * 更新用户资产
      *
-     * @param  array  $option [description]
-     * @return [type]         [description]
+     * @param  array  $option 请求参数
+     * @return array
      */
     public function updateAction(array $option)
     {
@@ -187,7 +188,7 @@ class Balance extends Comm
      * 用户转换资产
      *
      * @param  array  $option [description]
-     * @return [type]         [description]
+     * @return array
      */
     public function shiftAction(array $option)
     {
@@ -239,7 +240,7 @@ class Balance extends Comm
      *
      * @param  array  $names   资产名称列表
      * @param  int    $uid     用户ID
-     * @return [type]        [description]
+     * @return array
      */
     public function info(array $option)
     {
@@ -267,7 +268,7 @@ class Balance extends Comm
      * @param  int    $uid     用户ID
      * @param  float  $amount  充值数量
      * @param  int    $usable  1: 操作可用, 0: 操作冻结
-     * @return [type]          成功返回更新后的资产，错误返回false
+     * @return array 成功返回更新后的资产
      */
     public function charge(array $option)
     {
@@ -306,7 +307,7 @@ class Balance extends Comm
                 'available_after'   => $usable == 1 ? $update['available'] : $info['available'],
                 'freeze_after'      => $usable != 1 ? $update['freeze'] : $info['freeze'],
                 'available_before'  => $info['available'],
-                'freeze_before'      => $info['freeze'],
+                'freeze_before'     => $info['freeze'],
             ];
         }
         // 不存在，新增
@@ -330,8 +331,8 @@ class Balance extends Comm
                 'amount'            => $amount,
                 'available_after'   => $info['available'],
                 'freeze_after'      => $info['freeze'],
-                'available_before'   => 0,
-                'freeze_before'      => 0,
+                'available_before'  => 0,
+                'freeze_before'     => 0,
             ];
         }
     }
@@ -343,7 +344,7 @@ class Balance extends Comm
      * @param  int    $uid     用户ID
      * @param  float  $amount  充值数量
      * @param  int    $usable  1: 操作可用, 0: 操作冻结
-     * @return [type]          成功返回更新后的资产，错误返回false
+     * @return array 成功返回更新后的资产
      */
     public function deduction(array $option)
     {
@@ -402,7 +403,7 @@ class Balance extends Comm
      * @param  int    $uid     用户ID
      * @param  float  $amount  充值数量
      * @param  int    $usable  1: 冻结转可用, 0: 可用转冻结
-     * @return [type]          成功返回更新后的资产，错误返回false
+     * @return array 成功返回更新后的资产
      */
     public function shift(array $option)
     {
@@ -461,8 +462,7 @@ class Balance extends Comm
     /**
      * 自动完成create_time字段
      * 
-     * @param [type] $val 默认值
-     * @param array  $row 列值
+     * @return int
      */
     protected function setCreateTimeAttr($val)
     {
@@ -472,8 +472,7 @@ class Balance extends Comm
     /**
      * 自动完成update_time字段
      * 
-     * @param [type] $val 默认值
-     * @param array  $row 列值
+     * @return int
      */
     protected function setUpdateTimeAttr($val)
     {

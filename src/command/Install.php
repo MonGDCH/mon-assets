@@ -1,4 +1,5 @@
 <?php
+
 namespace mon\assets\command;
 
 use Mon\console\Command;
@@ -48,7 +49,7 @@ class Install extends Command
             $out->write('File: ' . $e->getFile());
             $out->write('Line: ' . $e->getLine());
             return $out->write('Message: ' . $e->getMessage());
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             Db::rollback();
             $out->write('Exception: ');
             $out->write('File: ' . $e->getFile());

@@ -1,4 +1,5 @@
 <?php
+
 namespace mon\assets\model;
 
 use Exception;
@@ -16,7 +17,7 @@ class Transform extends Comm
     /**
      * 验证器
      *
-     * @var [type]
+     * @var Assets
      */
     protected $validate;
 
@@ -32,8 +33,8 @@ class Transform extends Comm
     /**
      * 兑换接口, 用户HTTP, 保持接口一致化
      *
-     * @param  array  $option [description]
-     * @return [type]         [description]
+     * @param  array  $option 请求参数
+     * @return array 最新资产信息
      */
     public function converAction(array $option)
     {
@@ -43,8 +44,8 @@ class Transform extends Comm
     /**
      * 转账接口, 用户HTTP, 保持接口一致化
      *
-     * @param  array  $option [description]
-     * @return [type]         [description]
+     * @param  array  $option 请求参数
+     * @return array 最新资产信息
      */
     public function transferAction(array $option)
     {
@@ -61,7 +62,7 @@ class Transform extends Comm
      * @param  int    $to_usable   目标资产类型, 1可用;2冻结
      * @param  string $from_name   来源资产名称
      * @param  string $to_name     目标资产资产名称
-     * @return [type] [description]
+     * @return array 最新资产信息
      */
     public function conver(array $option)
     {
@@ -161,7 +162,7 @@ class Transform extends Comm
      * @param  int    $to_usable   目标用户资产类型, 1可用;2冻结
      * @param  string $from_name   来源用户资产名称
      * @param  string $to_name     目标用户资产名称
-     * @return [type]              [description]
+     * @return array 最新资产信息
      */
     public function transfer(array $option)
     {

@@ -1,4 +1,5 @@
 <?php
+
 namespace mon\assets;
 
 use mon\env\Config;
@@ -11,14 +12,14 @@ class Asset
     /**
      * 单例实现
      *
-     * @var [type]
+     * @var Asset
      */
     protected static $instance;
 
     /**
      * 初始化标志
      *
-     * @var [type]
+     * @var boolean
      */
     protected $init = false;
 
@@ -32,14 +33,14 @@ class Asset
     /**
      * 错误信息
      *
-     * @var [type]
+     * @var mixed
      */
     protected $error;
 
     /**
      * 获取单例
      *
-     * @return [type] [description]
+     * @return Asset
      */
     public static function instance()
     {
@@ -53,7 +54,7 @@ class Asset
     /**
      * 初始化
      *
-     * @return [type] [description]
+     * @return void
      */
     public function init(array $config = [])
     {
@@ -84,7 +85,7 @@ class Asset
      * @param  string $class  对象名
      * @param  string $method 方法
      * @param  array  $params 参数
-     * @return [type]         [description]
+     * @return array  结果集
      */
     public function run(string $class, string $method, array $params = [])
     {
@@ -113,9 +114,10 @@ class Asset
     /**
      * 执行应用
      *
-     * @param  string $command [description]
-     * @param  array  $params  [description]
-     * @return [type]          [description]
+     * @param  string $command 模型名称
+     * @param  string $method  调用方法
+     * @param  array  $params  请求参数
+     * @return mixed
      */
     public function excute(string $class, string $method, array $params = [])
     {
@@ -143,7 +145,7 @@ class Asset
     /**
      * 判断是否已初始化
      *
-     * @return boolean [description]
+     * @return boolean
      */
     public function isInit()
     {
@@ -153,7 +155,7 @@ class Asset
     /**
      * 判断是否为HTTP调用
      *
-     * @return boolean [description]
+     * @return boolean
      */
     public function isHttp()
     {
@@ -163,12 +165,12 @@ class Asset
     /**
      * 定义返回结果集
      *
-     * @param  [type] $code [description]
-     * @param  [type] $msg  [description]
-     * @param  [type] $data [description]
-     * @return [type]       [description]
+     * @param integer $code 状态码
+     * @param string $msg   信息
+     * @param array $data   数据
+     * @return array
      */
-    public function res(int $code = 0, string $msg = '', array $data = [])
+    public function res($code = 0, $msg = '', array $data = [])
     {
         return [
             'code'  => $code,
@@ -180,7 +182,7 @@ class Asset
     /**
      * 获取错误信息
      *
-     * @return [type] [description]
+     * @return mixed
      */
     public function getError()
     {

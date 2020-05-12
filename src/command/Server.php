@@ -1,4 +1,5 @@
 <?php
+
 namespace mon\assets\command;
 
 use Mon\console\Command;
@@ -13,7 +14,7 @@ class Server extends Command
     /**
      * 执行指令
      *
-     * @return [type] [description]
+     * @return void
      */
     public function execute(Input $in, Output $out)
     {

@@ -1,4 +1,5 @@
 <?php
+
 namespace mon\assets;
 
 use mon\orm\Db;
@@ -11,18 +12,18 @@ class Util
     /**
      * 日志驱动
      *
-     * @var [type]
+     * @var mixed
      */
     public static $log_drive;
 
     /**
      * 记录日志
      *
-     * @param  [type] $file 文件
-     * @param  [type] $line 行
-     * @param  [type] $log  日志信息
-     * @param  string $type 类型
-     * @return [type]       [description]
+     * @param  string  $file 文件
+     * @param  integer $line 行
+     * @param  string  $log  日志信息
+     * @param  string  $type 类型
+     * @return mixed
      */
     public static function ossLog($file, $line, $log, $type = 'INFO')
     {
@@ -37,9 +38,10 @@ class Util
     /**
      * 安装资产表
      *
-     * @param  [type] $tabname  [description]
-     * @param  [type] $tabtotal [description]
-     * @return [type]           [description]
+     * @param  string  $tabname  表名称
+     * @param  integer $tabtotal 分表数量
+     * @param  boolean $tabtotal 是否输出描述
+     * @return integer 安装表数
      */
     public static function installAsstes($tabname, $tabtotal, $echo = true)
     {
@@ -67,10 +69,10 @@ class Util
     /**
      * 安装日志表
      *
-     * @param  [type]  $tabname  [description]
-     * @param  [type]  $tabtotal [description]
-     * @param  boolean $echo     [description]
-     * @return [type]            [description]
+     * @param  string  $tabname  表名称
+     * @param  integer $tabtotal 分表数量
+     * @param  boolean $tabtotal 是否输出描述
+     * @return integer 安装表数
      */
     public static function installLog($tabname, $tabtotal, $echo = true)
     {
@@ -98,8 +100,8 @@ class Util
     /**
      * 创建资产表
      *
-     * @param  [type] $name 表名
-     * @return [type]       [description]
+     * @param  string $name 表名
+     * @return mixed
      */
     public static function createAsstesTable($name = 'asset_balance')
     {
@@ -116,7 +118,7 @@ CREATE TABLE `%s` (
     PRIMARY KEY (`id`),
     KEY `user`(`uid`),
     UNIQUE KEY `user_coin`(`uid`, `name`)
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '资产表';
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '资产表';
 SQL;
 
         $sql = sprintf($assets_sql, $name);
@@ -126,8 +128,8 @@ SQL;
     /**
      * 创建资产流水表
      *
-     * @param  [type] $name 表名
-     * @return [type]       [description]
+     * @param  string $name 表名
+     * @return mixed
      */
     public static function createLogTable($name = 'asset_balance_log')
     {
@@ -148,7 +150,7 @@ CREATE TABLE `%s`  (
     `create_time` int(10) UNSIGNED NOT NULL COMMENT '创建时间',
     PRIMARY KEY (`id`),
     KEY `user`(`uid`)
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '资产流水表';
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '资产流水表';
 SQL;
 
         $sql = sprintf($log_sql, $name);

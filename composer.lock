@@ -4,24 +4,77 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "83d716d42e3b32413ba53db0cb3b0ba3",
+    "content-hash": "3a17dc01d3cf8dee92a3c1f748a3dc4d",
     "packages": [
         {
-            "name": "mongdch/mon-env",
-            "version": "1.0.2",
+            "name": "mongdch/mon-container",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/MonGDCH/mon-env.git",
-                "reference": "f0fba906a24c0bdbe26a1d923054f82c3b9256b7"
+                "url": "https://github.com/MonGDCH/mon-container.git",
+                "reference": "cae30a0fce957ef1c9df5a4dbe8f2fd46bfee374"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MonGDCH/mon-env/zipball/f0fba906a24c0bdbe26a1d923054f82c3b9256b7",
-                "reference": "f0fba906a24c0bdbe26a1d923054f82c3b9256b7",
-                "shasum": ""
+                "url": "https://api.github.com/repos/MonGDCH/mon-container/zipball/cae30a0fce957ef1c9df5a4dbe8f2fd46bfee374",
+                "reference": "cae30a0fce957ef1c9df5a4dbe8f2fd46bfee374",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
-                "php": ">=7.0.0"
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "mon\\factory\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "MonGDCH",
+                    "email": "985558837@qq.com"
+                }
+            ],
+            "description": "the php factory container utils.",
+            "keywords": [
+                "container",
+                "factory",
+                "php"
+            ],
+            "time": "2019-06-24T06:02:58+00:00"
+        },
+        {
+            "name": "mongdch/mon-env",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MonGDCH/mon-env.git",
+                "reference": "96a240559f4872a7707756602bfc33cc5f26f061"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MonGDCH/mon-env/zipball/96a240559f4872a7707756602bfc33cc5f26f061",
+                "reference": "96a240559f4872a7707756602bfc33cc5f26f061",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.6.0"
             },
             "type": "library",
             "autoload": {
@@ -45,23 +98,30 @@
                 "env",
                 "php"
             ],
-            "time": "2019-04-23T05:48:59+00:00"
+            "time": "2019-09-12T08:40:17+00:00"
         },
         {
             "name": "mongdch/mon-orm",
-            "version": "v2.1.0",
+            "version": "v2.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MonGDCH/mon-orm.git",
-                "reference": "80fc53eb7efc32a449267c521c8a0137f5b1ee40"
+                "reference": "c44ea078efa71e7804edf8ab48a373c327996c3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MonGDCH/mon-orm/zipball/80fc53eb7efc32a449267c521c8a0137f5b1ee40",
-                "reference": "80fc53eb7efc32a449267c521c8a0137f5b1ee40",
-                "shasum": ""
+                "url": "https://api.github.com/repos/MonGDCH/mon-orm/zipball/c44ea078efa71e7804edf8ab48a373c327996c3b",
+                "reference": "c44ea078efa71e7804edf8ab48a373c327996c3b",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
+                "mongdch/mon-container": "^1.0",
                 "php": ">=5.6.0"
             },
             "type": "library",
@@ -87,24 +147,30 @@
                 "mysql",
                 "orm"
             ],
-            "time": "2019-03-26T06:01:39+00:00"
+            "time": "2020-04-06T09:55:47+00:00"
         },
         {
             "name": "mongdch/mon-store",
-            "version": "1.0.0",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MonGDCH/mon-store.git",
-                "reference": "dfee8bbcffa99f576b73e0d481cc710ccdc8a8b4"
+                "reference": "29b5a8d69fe321e95f5c470bb7b88306215b102f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MonGDCH/mon-store/zipball/dfee8bbcffa99f576b73e0d481cc710ccdc8a8b4",
-                "reference": "dfee8bbcffa99f576b73e0d481cc710ccdc8a8b4",
-                "shasum": ""
+                "url": "https://api.github.com/repos/MonGDCH/mon-store/zipball/29b5a8d69fe321e95f5c470bb7b88306215b102f",
+                "reference": "29b5a8d69fe321e95f5c470bb7b88306215b102f",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
-                "php": ">=7.0.0"
+                "php": ">=5.6.0"
             },
             "type": "library",
             "autoload": {
@@ -114,7 +180,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "Apache-2.0"
+                "MIT"
             ],
             "authors": [
                 {
@@ -131,21 +197,27 @@
                 "session",
                 "store"
             ],
-            "time": "2019-04-11T10:12:57+00:00"
+            "time": "2019-12-18T09:32:14+00:00"
         },
         {
             "name": "mongdch/mon-util",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MonGDCH/mon-util.git",
-                "reference": "99431d93f410e9960c421aec225bd876d4b2c196"
+                "reference": "8b44056d2f2dc6bec76fa9b4f68c9e45dbc801e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MonGDCH/mon-util/zipball/99431d93f410e9960c421aec225bd876d4b2c196",
-                "reference": "99431d93f410e9960c421aec225bd876d4b2c196",
-                "shasum": ""
+                "url": "https://api.github.com/repos/MonGDCH/mon-util/zipball/8b44056d2f2dc6bec76fa9b4f68c9e45dbc801e7",
+                "reference": "8b44056d2f2dc6bec76fa9b4f68c9e45dbc801e7",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": ">=5.6.0"
@@ -171,7 +243,7 @@
                 "php",
                 "utils"
             ],
-            "time": "2019-04-18T10:19:55+00:00"
+            "time": "2019-12-20T07:04:45+00:00"
         }
     ],
     "packages-dev": [],
