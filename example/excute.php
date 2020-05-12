@@ -8,38 +8,38 @@ use mon\assets\Asset;
 Asset::instance()->init();
 
 // 查询日志
-// $option = [
-//     'class'     => 'log',
-//     'method'    => 'history',
-//     'params'    => [
-//         'uid'   => 1,
-//         // 'name'  => 'ETH',
-//         // 'source'=> 'test',
-//         // 'from'  => 10,
-//         // 'offset'=> 1,
-//         // 'limit' => 5
-//     ],
-//     // 'id'        => 123456
-// ];
-
-// 记录日志
 $option = [
     'class'     => 'log',
-    'method'    => 'record',
+    'method'    => 'history',
     'params'    => [
-        'uid'                => 1,
-        'from'               => 1,
-        'type'               => 99,
-        'name'               => 'ETH',
-        'source'             => 'composer excute',
-        'available_before'   => '0',
-        'available_num'      => '666',
-        'available_after'    => '666',
-        'freeze_before'      => '888',
-        'freeze_num'         => '0',
-        'freeze_after'       => '888',
+        'uid'   => 1,
+        // 'name'  => 'ETH',
+        // 'source'=> 'test',
+        // 'from'  => 10,
+        // 'offset'=> 1,
+        // 'limit' => 5
     ],
+    // 'id'        => 123456
 ];
+
+// 记录日志
+// $option = [
+//     'class'     => 'log',
+//     'method'    => 'record',
+//     'params'    => [
+//         'uid'                => 1,
+//         'from'               => 1,
+//         'type'               => 99,
+//         'name'               => 'ETH',
+//         'source'             => 'composer excute',
+//         'available_before'   => '0',
+//         'available_num'      => '666',
+//         'available_after'    => '666',
+//         'freeze_before'      => '888',
+//         'freeze_num'         => '0',
+//         'freeze_after'       => '888',
+//     ],
+// ];
 
 
 // 查询资产

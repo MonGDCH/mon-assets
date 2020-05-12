@@ -3,6 +3,7 @@
 namespace mon\assets;
 
 use mon\env\Config;
+use mon\factory\Container;
 use mon\assets\Util;
 use mon\assets\AssetException;
 use mon\assets\log\LogInterface;
@@ -99,7 +100,7 @@ class Asset
                 return $this->res(-4, 'class not found');
             }
             $method = $method . 'Action';
-            $object = new $class();
+            $object = Container::instance()->make($class);
             if (!method_exists($object, $method)) {
                 return $this->res(-1, 'mothod not found');
             }
@@ -128,7 +129,8 @@ class Asset
                 $this->error = 'class not found';
                 return false;
             }
-            $object = new $class();
+
+            $object = Container::instance()->make($class);
             if (!method_exists($object, $method)) {
                 $this->error = 'mothod not found';
                 return false;

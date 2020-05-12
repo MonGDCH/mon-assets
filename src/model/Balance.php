@@ -79,9 +79,8 @@ class Balance extends Comm
     {
         // 获取数据
         $data = $this->info($option);
-
         // 解析数据
-        $names = $option['names'];
+        $names = isset($option['names']) ? $option['names'] : [];
         $info = [];
         if (!empty($names)) {
             foreach ($data as $item) {
@@ -249,7 +248,7 @@ class Balance extends Comm
             throw new AssetException($check, 101);
         }
         $uid = $option['uid'];
-        $names = $option['names'];
+        $names = isset($option['names']) ? $option['names'] : [];
         $query = $this->table($this->getTableName($uid))->where('uid', $uid)->field('name, available, freeze, status, create_time, update_time');
         if (!empty($names)) {
             // in查询

@@ -1,12 +1,5 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
-
-use mon\env\Config;
-use mon\assets\Asset;
-
-Asset::instance()->init();
-
 // 查询日志
 // $option = [
 //     'method'    => 'log.history',
@@ -88,8 +81,37 @@ $option = [
 //     'id'        => 123456
 // ];
 
-list($class, $method) = explode('.', $option['method']);
+function sendRquest($url,  $data = [], $type = 'post', $toJson = false, $timeOut = 0)
+{
+    // 判断是否为https请求
+    $ssl = substr($url, 0, 8) == "https://" ? TRUE : FALSE;
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, ($type == 'post') ? true : false);
+    // 判断是否需要传递post数据
+    if (count($data) != 0) {
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+    }
+    // 设置内容以文本形式返回，而不直接返回
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    if ($ssl) {
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // 跳过证书检查
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); // 从证书中检查SSL加密算法是否存在
+    }
+    // 设置超时时间
+    if (!empty($timeOut)) {
+        curl_setopt($ch, CURLOPT_TIMEOUT, $timeOut);
+    }
+    // 发起请求
+    $html = curl_exec($ch);
+    // 关于请求句柄
+    curl_close($ch);
+    $result = ($toJson) ? json_decode($html, true) : $html;
+    return $result;
+}
 
-$data = Asset::instance()->run($class, $method, $option['params']);
+$url = 'http://127.0.0.1:8888';
+$data = sendRquest($url, $option);
 
 var_dump($data);
+

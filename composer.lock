@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3a17dc01d3cf8dee92a3c1f748a3dc4d",
+    "content-hash": "f67154cb6846ed12e20f16ef0a2f5b17",
     "packages": [
         {
             "name": "mongdch/mon-container",
@@ -253,7 +253,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.0.0"
+        "php": ">=5.6.0"
     },
     "platform-dev": []
 }
