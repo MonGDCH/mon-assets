@@ -28,7 +28,7 @@ class Log implements LogInterface
      * @param string $type      日志级别
      * @return Log
      */
-    public function record(string $msg, string $type = 'INFO')
+    public function record($msg, $type = 'INFO')
     {
         if (!Asset::instance()->isHttp()) {
             return true;

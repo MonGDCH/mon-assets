@@ -23,8 +23,8 @@ class Server extends Command
 
 
         $args = $in->getArgs();
-        $ip = $args[0] ?? '127.0.0.1';
-        $port = $args[1] ?? '8088';
+        $ip = isset($args[0]) ? $args[0] : '127.0.0.1';
+        $port = isset($$args[1]) ? $args[1] : '8088';
         $root = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
 
         $command = sprintf(

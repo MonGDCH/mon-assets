@@ -60,9 +60,14 @@ class Asset
     public function init(array $config = [])
     {
         if (empty($config)) {
-            $path = __DIR__ . '/../config/config.php';
-            // 加载配置信息
-            Config::instance()->load($path, 'mon_assets');
+            $baseConfig = Config::instance()->get('mon_assets');
+            if (empty($baseConfig)) {
+                $path = __DIR__ . '/../config/config.php';
+                // 加载配置信息
+                Config::instance()->load($path, 'mon_assets');
+            } else {
+                Config::instance()->set('mon_assets', $baseConfig);
+            }
         } else {
             Config::instance()->set('mon_assets', $config);
         }
@@ -88,7 +93,7 @@ class Asset
      * @param  array  $params 参数
      * @return array  结果集
      */
-    public function run(string $class, string $method, array $params = [])
+    public function run($class, $method, array $params = [])
     {
         $this->http = true;
         $log = "class => {$class}, method => {$method}, params => " . var_export($params, true);
@@ -120,7 +125,7 @@ class Asset
      * @param  array  $params  请求参数
      * @return mixed
      */
-    public function excute(string $class, string $method, array $params = [])
+    public function excute($class, $method, array $params = [])
     {
         try {
             // 获取对应对象

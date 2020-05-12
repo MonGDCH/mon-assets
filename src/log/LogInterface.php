@@ -15,5 +15,5 @@ interface LogInterface
      * @param  string $type [description]
      * @return [type]       [description]
      */
-    public function record(string $log, string $type);
+    public function record($log, $type);
 }
